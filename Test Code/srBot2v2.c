@@ -59,8 +59,8 @@ task main() {
 				motor[rGoal] =
 				: 0;
 
-				if(vexRT[Btn7U] ^ vexRT[Btn7D]) {
-			if(vexRT[Btn5U])
+				if(vexRT[Btn8U] ^ vexRT[Btn8D]) {
+			if(vexRT[Btn8U])
 				motor[roller] =
 					127;
 			else
