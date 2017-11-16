@@ -28,29 +28,49 @@ task main() {
 			motor[mrDrive] =
 			motor[brDrive] =
 			vexRT[Ch3] - vexRT[Ch1];
+			
+		if(vexRT[Btn5U] ^ vexRT[Btn5D]) {
+			if(vexRT[Btn5U])
+				motor[lLift] =
+					motor[rLift] =
+					127;
+			else
+				motor[lLift] = 
+					motor[rLift] =
+					-127;
+		}
+		else
+			motor[lLift] = 
+				motor[rLift] =
+				0;
 
-		motor[lLift] =
-			motor[rLift] =
-			(vexRT[Btn5U] ^ vexRT[Btn5D])
-				? (vexRT[Btn5U])
-					? 127
-					: -127
+		if(vexRT[Btn6U] ^ vexRT[Btn6D]) {
+			if(vexRT[Btn6U])
+				motor[lGoal] =
+					motor[rGoal] =
+					127;
+			else
+				motor[lGoal] = 
+					motor[rGoal] =
+					-127;
+		}
+		else
+			motor[lGoal] = 
+				motor[rGoal] =
 				: 0;
 
-		motor[lGoal] =
-			motor[rGoal] =
-			(vexRT[Btn6U] ^ vexRT[Btn6D])
-				? (vexRT[Btn6U])
-					? 127
-					: -127
-				: 0;
+				if(vexRT[Btn7U] ^ vexRT[Btn7D]) {
+			if(vexRT[Btn5U])
+				motor[roller] =
+					127;
+			else
+				motor[roller] =
+					-127;
+		}
+		else
+			motor[roller] =
+					0;
 
-		motor[roller] =
-			(vexRT[Btn7U] ^ vexRT[Btn7D])
-				? (vexRT[Btn7U])
-					? 127
-					: -127
-				: 0;
 
 		wait1Msec(20);
 	}

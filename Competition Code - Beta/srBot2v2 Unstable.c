@@ -94,14 +94,16 @@ task usercontrol() {
 	// User control code here, inside the loop
 
 	while (true) {
-	  for(int i = 0; i < 4; i++) {
-	  	sticks[i] = (fabs(vexRT[i]) >= STICK_THRESH)
-	  		? vexRT[i]
-	  		: 0;
+	  for(int i = 0; i < 4; i++) { //Iterate over all 4 joystick analog channels
+	  	if(fabs(vexRT[i]) >= STICK_THRESH)
+			sticks[i] = vexRT[i];
+		else
+			sticks[i] = 0;
 		}
 
 		setDriveL(sticks[2] + sticks[3]);
 		setDriveR(sticks[2] - sticks[3]);
+		
 		setLift((vexRT[Btn5U] ^ vexRT[Btn5D])
 			? (vexRT[Btn5U])
 				? 127
@@ -112,11 +114,14 @@ task usercontrol() {
 				? 127
 				: -127
 			: 0);
-		setIntake((vexRT[Btn8U] ^ vexRT[Btn8D])
-			? (vexRT[Btn8U])
-				? 127
-				: -127
-			: 0);
+		if(vexRT[Btn8U] ^ vexRT[Btn8D]) {
+			if(vexRT[Btn8U])
+				setIntake(127);
+			else
+				setIntake(-127);
+		}
+		else
+			setIntake(0);
 		wait1Msec(20);
 	}
 }
