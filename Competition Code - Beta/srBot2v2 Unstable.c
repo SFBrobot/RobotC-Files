@@ -104,24 +104,48 @@ task usercontrol() {
 		setDriveL(sticks[2] + sticks[3]);
 		setDriveR(sticks[2] - sticks[3]);
 		
-		setLift((vexRT[Btn5U] ^ vexRT[Btn5D])
-			? (vexRT[Btn5U])
-				? 127
-				: -127
-			: 0);
-		setGoal((vexRT[Btn6U] ^ vexRT[Btn6D])
-			? (vexRT[Btn6U])
-				? 127
-				: -127
-			: 0);
-		if(vexRT[Btn8U] ^ vexRT[Btn8D]) {
-			if(vexRT[Btn8U])
-				setIntake(127);
+		if(vexRT[Btn5U] ^ vexRT[Btn5D]) {
+			if(vexRT[Btn5U])
+				motor[lLift] =
+					motor[rLift] =
+					127;
 			else
-				setIntake(-127);
+				motor[lLift] = 
+					motor[rLift] =
+					-127;
 		}
 		else
-			setIntake(0);
+			motor[lLift] = 
+				motor[rLift] =
+				0;
+
+		if(vexRT[Btn6U] ^ vexRT[Btn6D]) {
+			if(vexRT[Btn6U])
+				motor[lGoal] =
+					motor[rGoal] =
+					127;
+			else
+				motor[lGoal] = 
+					motor[rGoal] =
+					-127;
+		}
+		else
+			motor[lGoal] = 
+				motor[rGoal] =
+				: 0;
+
+				if(vexRT[Btn7U] ^ vexRT[Btn7D]) {
+			if(vexRT[Btn5U])
+				motor[roller] =
+					127;
+			else
+				motor[roller] =
+					-127;
+		}
+		else
+			motor[roller] =
+				0;
+					
 		wait1Msec(20);
 	}
 }
