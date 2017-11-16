@@ -101,6 +101,8 @@ task usercontrol() {
 			sticks[i] = 0;
 		}
 
+		//sticks[2] = vexRT[Ch3] (Left y-axis)
+		//sticks[3] = vexRT[Ch4] (Left x-axis)
 		setDriveL(sticks[2] + sticks[3]);
 		setDriveR(sticks[2] - sticks[3]);
 		
@@ -134,8 +136,8 @@ task usercontrol() {
 				motor[rGoal] =
 				: 0;
 
-				if(vexRT[Btn7U] ^ vexRT[Btn7D]) {
-			if(vexRT[Btn5U])
+				if(vexRT[Btn8U] ^ vexRT[Btn8D]) {
+			if(vexRT[Btn8U])
 				motor[roller] =
 					127;
 			else
