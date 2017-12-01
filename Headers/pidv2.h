@@ -54,9 +54,9 @@ Pid* initPid(Pid* pid, float kP, float kI, float kD, int thresh) {
 
 
 
-void initPids(Pid** pids, float* kPs, float* kIs, float* kDs, int* threshes, int pidCt) {
+void initPids(Pid* pids, float* kPs, float* kIs, float* kDs, int* threshes, int pidCt) {
 	for(int i = 0; i < pidCt; i++) {
-		initPid(pids[i], kPs[i], kIs[i], kDs[i], threshes[i]);
+		initPid((pids+i), kPs[i], kIs[i], kDs[i], threshes[i]);
 	}
 }
 
