@@ -32,7 +32,10 @@
 int STICK_THRESH = 11;
 
 //CONST ARRAYS
-float[4][3] ks = { { 0.1, 0.001, 0.01 }, { 0.1, 0.001, 0.01 }, { 0.1, 0.001, 0.01 }, { 0.1, 0.001, 0.01 } };
+float[4] kPs = { 0.1, 0.1, 0.1, 0.1 };
+float[4] kIs = { 0.001, 0.001, 0.001, 0.001 };
+float[4] kDs = { 0.01, 0.01, 0.01, 0.01 };
+float[3] pKs = { kPs, kIs, kDs };
 int[4] thresh = { 60, 60, 100, 50 };
 
 //STRUCTS
@@ -68,7 +71,7 @@ Pid[4] Pids;
 
 void pre_auton()
 {
-	initPids(Pids, 
+	initPids(Pids, ks, thresh);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -83,7 +86,8 @@ void pre_auton()
 task autonomous()
 {
 	while(!lDrivePid.bIsOnTarg && !rDrivePid.bIsOnTarg && lDrivePid.bIsEnabled && rDrivePid.bIsEnabled) {
-		
+
+	}
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -111,19 +115,19 @@ task usercontrol() {
 		//sticks[3] = vexRT[Ch4] (Left x-axis)
 		setDriveL(sticks[2] + sticks[3]);
 		setDriveR(sticks[2] - sticks[3]);
-		
+
 		if(vexRT[Btn5U] ^ vexRT[Btn5D]) {
 			if(vexRT[Btn5U])
 				motor[lLift] =
 					motor[rLift] =
 					127;
 			else
-				motor[lLift] = 
+				motor[lLift] =
 					motor[rLift] =
 					-127;
 		}
 		else
-			motor[lLift] = 
+			motor[lLift] =
 				motor[rLift] =
 				0;
 
@@ -133,12 +137,12 @@ task usercontrol() {
 					motor[rGoal] =
 					127;
 			else
-				motor[lGoal] = 
+				motor[lGoal] =
 					motor[rGoal] =
 					-127;
 		}
 		else
-			motor[lGoal] = 
+			motor[lGoal] =
 				motor[rGoal] =
 				: 0;
 
@@ -153,7 +157,7 @@ task usercontrol() {
 		else
 			motor[roller] =
 				0;
-					
+
 		wait1Msec(20);
 	}
 }

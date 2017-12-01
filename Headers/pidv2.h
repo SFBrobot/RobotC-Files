@@ -2,8 +2,20 @@
 
 #define PID_H
 
+int max(int a, int b) {
+	return (a > b)
+		? a
+		: b;
+}
+
+int min(int a, int b) {
+	return (a < b)
+		? a
+		: b;
+}
+
 typedef struct {
-	
+
 	int targ,
 		val,
 		err,
@@ -13,20 +25,20 @@ typedef struct {
 		time,
 		timeLast,
 		dt;
-		
+
 	float kP,
 		kI,
 		kD,
 		prop,
 		integ,
-		deriv, 
+		deriv,
 		result;
-		
+
 	bool bIsOnTarg,
 		bIsEnabled;
-		
+
 	void* ptr;
-		
+
 } Pid;
 
 Pid* initPid(Pid* pid, float kP, float kI, float kD, int thresh) {
@@ -39,7 +51,7 @@ Pid* initPid(Pid* pid, float kP, float kI, float kD, int thresh) {
 	pid->timeLast = 0;
 	pid->errLast = 0;
 	pid->ptr = pid;
-	
+
 	return pid;
 }
 
@@ -51,15 +63,15 @@ Pid* initPid(Pid* pid, float* ks, int thresh) {
 	pid->targ = 0;
 	pid->integ = 0;
 	pid->timeLast = 0;
-	
+
 	return pid;
 }
 
-void initPids(Pid** pids, float** ks, int* threshes) {
-	for(int i = 0; i < (sizeof(pids) / sizeof(Pid*)); i++) {
-		initPid(pids[i], ks[i], threshes[i]);
-	}
-}
+//void initPids(Pid** pids, float** ks, int* threshes, int pidCt) {
+//	for(int i = 0; i < pidCt; i++) {
+//		initPid(pids[i], ks[i], threshes[i]);
+//	}
+//}
 
 int setTarg(Pid* pid, int targ) {
 	pid->targ = targ;
@@ -88,12 +100,12 @@ int calcPid(Pid* pid, int val, int time) {
 	}
 	pid->errLast = pid->err;
 	pid->timeLast = pid->time;
-	
+
 	return pid->result;
 }
 
 int calcPidPwr(Pid* pid) {
-	pid->pwr = round(pid>result);
+	pid->pwr = round(pid->result);
 	pid->pwr = max(min(pid->pwr, 127), -127);
 	return pid->pwr;
 }
