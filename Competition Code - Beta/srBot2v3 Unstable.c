@@ -115,45 +115,30 @@ task usercontrol() {
 
 		if(vexRT[Btn5U] ^ vexRT[Btn5D]) {
 			if(vexRT[Btn5U])
-				motor[lLift] =
-					motor[rLift] =
-					127;
+				setLift(127);
 			else
-				motor[lLift] =
-					motor[rLift] =
-					-127;
+				setLift(-127);
 		}
 		else
-			motor[lLift] =
-				motor[rLift] =
-				0;
+			setLift(0);
 
 		if(vexRT[Btn6U] ^ vexRT[Btn6D]) {
 			if(vexRT[Btn6U])
-				motor[lGoal] =
-					motor[rGoal] =
-					127;
+				setGoal(127);
 			else
-				motor[lGoal] =
-					motor[rGoal] =
-					-127;
+				setGoal(-127);
 		}
 		else
-			motor[lGoal] =
-				motor[rGoal] =
-				0;
+			setGoal(0);
 
 				if(vexRT[Btn8U] ^ vexRT[Btn8D]) {
 			if(vexRT[Btn8U])
-				motor[roller] =
-					127;
+				setIntake(127);
 			else
-				motor[roller] =
-					-127;
+				setIntake(-127);
 		}
 		else
-			motor[roller] =
-				0;
+			setIntake(0);
 
 		wait1Msec(20);
 	}
