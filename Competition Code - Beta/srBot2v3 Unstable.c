@@ -141,7 +141,7 @@ task usercontrol() {
 		else
 			motor[lGoal] =
 				motor[rGoal] =
-				: 0;
+				0;
 
 				if(vexRT[Btn8U] ^ vexRT[Btn8D]) {
 			if(vexRT[Btn8U])
