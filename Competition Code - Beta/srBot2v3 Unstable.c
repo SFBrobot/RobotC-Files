@@ -35,7 +35,6 @@ int STICK_THRESH = 11;
 float[4] kPs = { 0.1, 0.1, 0.1, 0.1 };
 float[4] kIs = { 0.001, 0.001, 0.001, 0.001 };
 float[4] kDs = { 0.01, 0.01, 0.01, 0.01 };
-float[3] pKs = { kPs, kIs, kDs };
 int[4] thresh = { 60, 60, 100, 50 };
 
 //STRUCTS
@@ -71,7 +70,7 @@ Pid[4] Pids;
 
 void pre_auton()
 {
-	initPids(Pids, ks, thresh);
+	initPids(Pids, kPs, kIs, kDs, thresh);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -85,9 +84,7 @@ void pre_auton()
 
 task autonomous()
 {
-	while(!lDrivePid.bIsOnTarg && !rDrivePid.bIsOnTarg && lDrivePid.bIsEnabled && rDrivePid.bIsEnabled) {
-
-	}
+	
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
