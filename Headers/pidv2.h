@@ -37,8 +37,6 @@ typedef struct {
 	bool bIsOnTarg,
 		bIsEnabled;
 
-	void* ptr;
-
 } Pid;
 
 Pid* initPid(Pid* pid, float kP, float kI, float kD, int thresh) {
@@ -50,28 +48,17 @@ Pid* initPid(Pid* pid, float kP, float kI, float kD, int thresh) {
 	pid->integ = 0;
 	pid->timeLast = 0;
 	pid->errLast = 0;
-	pid->ptr = pid;
 
 	return pid;
 }
 
-Pid* initPid(Pid* pid, float* ks, int thresh) {
-	pid->kP = ks[0];
-	pid->kI = ks[1];
-	pid->kD = ks[2];
-	pid->thresh = thresh;
-	pid->targ = 0;
-	pid->integ = 0;
-	pid->timeLast = 0;
 
-	return pid;
+
+void initPids(Pid** pids, float* kPs, float* kIs, float* kDs, int* threshes, int pidCt) {
+	for(int i = 0; i < pidCt; i++) {
+		initPid(pids[i], kPs[i], kIs[i], kDs[i], threshes[i]);
+	}
 }
-
-//void initPids(Pid** pids, float** ks, int* threshes, int pidCt) {
-//	for(int i = 0; i < pidCt; i++) {
-//		initPid(pids[i], ks[i], threshes[i]);
-//	}
-//}
 
 int setTarg(Pid* pid, int targ) {
 	pid->targ = targ;
