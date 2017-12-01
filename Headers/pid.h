@@ -1,7 +1,7 @@
 
-#ifndef PID //If PID is not defined (pid.h not included)
+#ifndef PID_H //If PID_H is not defined (pid.h or pidv2.h not included)
 
-#define PID //Define PID
+#define PID_H //Define PID_H (include guard)
 
 typedef struct {
 	float targ,
