@@ -32,14 +32,14 @@
 int STICK_THRESH = 11;
 
 //CONST ARRAYS
-float[4] kPs = { 0.1, 0.1, 0.1, 0.1 };
-float[4] kIs = { 0.001, 0.001, 0.001, 0.001 };
-float[4] kDs = { 0.01, 0.01, 0.01, 0.01 };
-int[4] thresh = { 60, 60, 100, 50 };
+float kPs[4] = { 0.1, 0.1, 0.1, 0.1 };
+float kIs[4] = { 0.001, 0.001, 0.001, 0.001 };
+float kDs[4] = { 0.01, 0.01, 0.01, 0.01 };
+int thresh[4] = { 60, 60, 100, 50 };
 
 //STRUCTS
 //PID
-Pid[4] Pids;
+Pid Pids[4];
 
 
 //MACROS
@@ -70,7 +70,7 @@ Pid[4] Pids;
 
 void pre_auton()
 {
-	initPids(Pids, kPs, kIs, kDs, thresh);
+	initPids(Pids, kPs, kIs, kDs, thresh, 4);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
